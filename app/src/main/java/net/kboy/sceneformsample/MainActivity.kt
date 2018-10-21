@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             val anchor = hitResult.createAnchor()
             placeObject(fragment, anchor, selectedObject)
         }
-}
+    }
 
     private fun initializeGallery() {
         val chair = ImageView(this)
