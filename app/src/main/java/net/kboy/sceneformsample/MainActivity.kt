@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         initializeGallery()
 
-        fragment = sceneform_fragment.let { it as ArFragment }
+        fragment = sceneformFragment.let { it as ArFragment }
         fragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                 return@setOnTapArPlaneListener
@@ -42,21 +42,21 @@ class MainActivity : AppCompatActivity() {
         chair.setOnClickListener {
             selectedObject = Uri.parse("chair.sfb")
         }
-        gallery_layout.addView(chair)
+        galleryLayout.addView(chair)
 
         val couch = ImageView(this)
         couch.setImageResource(R.drawable.couch_thumb)
         couch.setOnClickListener {
             selectedObject = Uri.parse("couch.sfb")
         }
-        gallery_layout.addView(couch)
+        galleryLayout.addView(couch)
 
         val lamp = ImageView(this)
         lamp.setImageResource(R.drawable.lamp_thumb)
         lamp.setOnClickListener {
             selectedObject = Uri.parse("lamp.sfb")
         }
-        gallery_layout.addView(lamp)
+        galleryLayout.addView(lamp)
     }
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
