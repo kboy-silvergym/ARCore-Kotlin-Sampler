@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.ar.sceneform.plugin'
 
 android {
     compileSdkVersion 27
@@ -38,3 +39,19 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+
+sceneform.asset('sampledata/chair/model.obj',
+        'default',
+        'sampledata/chair/model.sfa',
+        'src/main/assets/chair')
+
+sceneform.asset('sampledata/couch/Couch.obj',
+        'default',
+        'sampledata/couch/Couch.sfa',
+        'src/main/assets/couch')
+
+sceneform.asset('sampledata/lamp/LampPost.obj',
+        'default',
+        'sampledata/lamp/LampPost.sfa',
+        'src/main/assets/lamp')

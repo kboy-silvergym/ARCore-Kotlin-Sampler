@@ -21,9 +21,6 @@
         <meta-data android:name="com.google.ar.core" android:value="required" />
     </application>
 
-    <!-- AR Optional apps must declare minSdkVersion ≥ 14 -->
-    <!-- AR Required apps must declare minSdkVersion ≥ 24 -->
-    <uses-sdk android:minSdkVersion="24" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera.ar" />
 
