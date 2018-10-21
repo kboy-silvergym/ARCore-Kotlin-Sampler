@@ -1,7 +1,7 @@
 # ARCore-Kotlin-Sampler
 
 ## Sceneform
-<img src="readmeImages/sceneform.jpg" width=400>
+<img src="readmeImages/sceneform.jpg" width=200>
 
 Showing object which is from Google Poly in Sceneform.
 
@@ -16,11 +16,11 @@ Showing object which is from Google Poly in Sceneform.
 - couch https://poly.google.com/view/4QKlmmd0v2b|
 
 ## Augumented Images
-<img src="readmeImages/augmented_images.png" width=400>
+<img src="readmeImages/augmented_images.png" width=200>
 
 WIP..
 
 ## Could Anchors
-<img src="readmeImages/cloud_anchors.png" width=400>
+<img src="readmeImages/cloud_anchors.png" width=200>
 
 WIP..
