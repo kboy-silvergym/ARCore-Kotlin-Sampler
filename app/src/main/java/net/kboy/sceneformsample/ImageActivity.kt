@@ -1,6 +1,5 @@
 package net.kboy.sceneformsample
 
-import android.app.FragmentManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_image.*
