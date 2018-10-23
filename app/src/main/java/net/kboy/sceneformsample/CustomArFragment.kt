@@ -14,6 +14,9 @@ open class CustomArFragment: ArFragment() {
         session?.configure(config)
         this.arSceneView.setupSession(session)
 
+        if (session != null) {
+            activity.let { it as? ImageActivity }?.setupAugmentedImageDb(config, session)
+        }
         return config
     }
 }
