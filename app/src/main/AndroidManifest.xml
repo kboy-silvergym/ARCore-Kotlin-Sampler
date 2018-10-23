@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.kboy.sceneformsample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera.ar" />
 
-    <user-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
