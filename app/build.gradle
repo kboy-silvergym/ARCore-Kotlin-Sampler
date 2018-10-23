@@ -55,3 +55,8 @@ sceneform.asset('sampledata/lamp/LampPost.obj',
         'default',
         'sampledata/lamp/LampPost.sfa',
         'src/main/assets/lamp')
+
+sceneform.asset('sampledata/airplane/Airplane.obj',
+        'default',
+        'sampledata/airplane/Airplane.sfa',
+        'src/main/assets/Airplane')
