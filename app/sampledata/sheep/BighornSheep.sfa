@@ -37,7 +37,7 @@
     file: 'sampledata/sheep/BighornSheep.obj',
     name: 'BighornSheep',
     recenter: 'root',
-    scale: 0.40703899999999998,
+    scale: 0.1,
   },
   samplers: [
     {

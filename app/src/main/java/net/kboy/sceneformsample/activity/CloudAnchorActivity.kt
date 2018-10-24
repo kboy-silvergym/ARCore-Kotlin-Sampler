@@ -1,63 +1,53 @@
-package net.kboy.sceneformsample
+package net.kboy.sceneformsample.activity
 
 import android.net.Uri
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.view.MotionEvent
-import android.widget.ImageView
 import com.google.ar.core.Anchor
-import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_cloud_anchor.*
+import net.kboy.sceneformsample.R
+import net.kboy.sceneformsample.fragment.CloudAnchorArFragment
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var selectedObject: Uri
-    private lateinit var fragment: ArFragment
+class CloudAnchorActivity : AppCompatActivity() {
+    private lateinit var fragment: CloudAnchorArFragment
+    private var cloudAnchor: Anchor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_cloud_anchor)
 
-        initializeGallery()
+        fragment =  cloudAnchorFragment.let { it as CloudAnchorArFragment }
+        fragment.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
 
-        fragment = sceneformFragment.let { it as ArFragment }
-        fragment.setOnTapArPlaneListener { hitResult: HitResult, plane: Plane, motionEvent: MotionEvent ->
             if (plane.type != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                 return@setOnTapArPlaneListener
             }
+
             val anchor = hitResult.createAnchor()
-            placeObject(fragment, anchor, selectedObject)
+            setCloudAnchor(anchor)
+
+            placeObject(fragment, cloudAnchor!!, Uri.parse("BighornSheep.sfb"))
+        }
+
+        clearButton.setOnClickListener {
+            setCloudAnchor(null)
         }
     }
 
-    private fun initializeGallery() {
-        val chair = ImageView(this)
-        chair.setImageResource(R.drawable.chair_thumb)
-        chair.setOnClickListener {
-            selectedObject = Uri.parse("chair.sfb")
+    private fun setCloudAnchor(newAnchor: Anchor?) {
+        if (cloudAnchor != null) {
+            cloudAnchor?.detach()
         }
-        galleryLayout.addView(chair)
-
-        val couch = ImageView(this)
-        couch.setImageResource(R.drawable.couch_thumb)
-        couch.setOnClickListener {
-            selectedObject = Uri.parse("couch.sfb")
-        }
-        galleryLayout.addView(couch)
-
-        val lamp = ImageView(this)
-        lamp.setImageResource(R.drawable.lamp_thumb)
-        lamp.setOnClickListener {
-            selectedObject = Uri.parse("lamp.sfb")
-        }
-        galleryLayout.addView(lamp)
+        cloudAnchor = newAnchor
     }
+
 
     private fun placeObject(fragment: ArFragment, anchor: Anchor, model: Uri) {
         ModelRenderable.builder()
@@ -83,5 +73,4 @@ class MainActivity : AppCompatActivity() {
         fragment.arSceneView.scene.addChild(anchorNode)
         node.select()
     }
-
 }

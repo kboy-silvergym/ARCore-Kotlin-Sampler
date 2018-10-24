@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ImageActivity">
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.ImageActivity"></activity>
+        <activity android:name=".activity.CloudAnchorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +31,6 @@
         <meta-data
             android:name="com.google.ar.API_KEY"
             android:value="" />
-
-        <activity android:name=".CloudAnchorActivity"></activity>
     </application>
 
 </manifest>

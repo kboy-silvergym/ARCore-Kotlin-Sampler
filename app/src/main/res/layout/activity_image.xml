@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/sceneformFragment"
-        android:name="net.kboy.sceneformsample.CustomArFragment"
+        android:name="net.kboy.sceneformsample.fragment.ImageArFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
