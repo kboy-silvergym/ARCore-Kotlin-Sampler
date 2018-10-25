@@ -1,4 +1,4 @@
-package net.kboy.sceneformsample
+package net.kboy.sceneformsample.activity
 
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +15,7 @@ import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_main.*
+import net.kboy.sceneformsample.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var selectedObject: Uri

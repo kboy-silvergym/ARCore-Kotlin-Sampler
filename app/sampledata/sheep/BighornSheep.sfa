@@ -1,0 +1,50 @@
+{
+  materials: [
+    {
+      name: 'BighornSheep_mat',
+      parameters: [
+        {
+          baseColor: 'BighornSheep_BaseColor',
+        },
+        {
+          baseColorTint: [
+            0.5,
+            0.5,
+            0.5,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/sheep/BighornSheep.obj',
+    name: 'BighornSheep',
+    recenter: 'root',
+    scale: 0.05,
+  },
+  samplers: [
+    {
+      file: 'sampledata/sheep/BighornSheep_BaseColor.png',
+      name: 'BighornSheep_BaseColor',
+      pipeline_name: 'BighornSheep_BaseColor.png',
+    },
+  ],
+  version: '0.52:1',
+}

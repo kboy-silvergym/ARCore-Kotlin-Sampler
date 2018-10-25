@@ -1,4 +1,4 @@
-package net.kboy.sceneformsample
+package net.kboy.sceneformsample.activity
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,24 +9,25 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.google.ar.core.*
 import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_image.*
+import net.kboy.sceneformsample.R
+import net.kboy.sceneformsample.fragment.ImageArFragment
 import java.io.IOException
 
 class ImageActivity : AppCompatActivity() {
 
-    private lateinit var arFragment: CustomArFragment
+    private lateinit var arFragment: ImageArFragment
     private var shouldAddModel: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
-        arFragment = sceneformFragment.let { it as CustomArFragment }
+        arFragment = sceneformFragment.let { it as ImageArFragment }
         arFragment.planeDiscoveryController.hide()
         arFragment.arSceneView.scene.addOnUpdateListener {
             val frame = arFragment.arSceneView.arFrame

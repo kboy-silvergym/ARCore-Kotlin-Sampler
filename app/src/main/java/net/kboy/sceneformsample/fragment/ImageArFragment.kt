@@ -1,10 +1,11 @@
-package net.kboy.sceneformsample
+package net.kboy.sceneformsample.fragment
 
 import com.google.ar.core.Config
 import com.google.ar.core.Session
 import com.google.ar.sceneform.ux.ArFragment
+import net.kboy.sceneformsample.activity.ImageActivity
 
-open class CustomArFragment: ArFragment() {
+open class ImageArFragment: ArFragment() {
 
     override fun getSessionConfiguration(session: Session?): Config {
         planeDiscoveryController.setInstructionView(null)
