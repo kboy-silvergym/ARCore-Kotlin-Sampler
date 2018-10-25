@@ -1,5 +1,6 @@
 package net.kboy.sceneformsample.activity
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -20,12 +21,16 @@ class CloudAnchorActivity : AppCompatActivity() {
     private enum class AnchorState {
         NONE,
         HOSTING,
-        HOSTED
+        HOSTED,
+        RESOLVING,
+        RESOLVED
     }
 
     private lateinit var fragment: CloudAnchorArFragment
     private var cloudAnchor: Anchor? = null
     private var state: AnchorState = AnchorState.NONE
+
+    private val sharedPrefs by lazy { getPreferences(Context.MODE_PRIVATE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +58,32 @@ class CloudAnchorActivity : AppCompatActivity() {
         fragment.arSceneView.scene.addOnUpdateListener {
             checkUpdatedAnchor()
         }
+        fragment.planeDiscoveryController.hide()
 
         clearButton.setOnClickListener {
             setCloudAnchor(null)
         }
-        fragment.planeDiscoveryController.hide()
+        resolveButton.setOnClickListener {
+            if (cloudAnchor != null) {
+                Toast.makeText(this,
+                        "Please clear Anchor",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                return@setOnClickListener
+            }
+
+            val id = sharedPrefs.getString("anchor", "")
+            val resolvedAnchor = fragment.arSceneView.session.resolveCloudAnchor(id)
+
+            setCloudAnchor(resolvedAnchor)
+            placeObject(fragment, cloudAnchor!!, Uri.parse("BighornSheep.sfb"))
+
+            Toast.makeText(this,
+                    "Now resolving anchor...",
+                    Toast.LENGTH_LONG)
+                    .show()
+            state = AnchorState.RESOLVING
+        }
     }
 
     private fun setCloudAnchor(newAnchor: Anchor?) {
@@ -75,7 +101,11 @@ class CloudAnchorActivity : AppCompatActivity() {
 
     // should be synchronized method?
     private fun checkUpdatedAnchor(){
-        if (state != AnchorState.HOSTING) {
+        if (state != AnchorState.HOSTING && state != AnchorState.RESOLVING) {
+            return
+        }
+
+        if (cloudAnchor == null) {
             return
         }
         val cloudAnchorState: Anchor.CloudAnchorState = cloudAnchor!!.cloudAnchorState
@@ -87,11 +117,32 @@ class CloudAnchorActivity : AppCompatActivity() {
                     .show()
             state = AnchorState.NONE
         } else if (cloudAnchorState == Anchor.CloudAnchorState.SUCCESS) {
+
+            // store
+            sharedPrefs.edit().putString("anchor", cloudAnchor!!.cloudAnchorId).apply()
+
             Toast.makeText(this,
                     "Anchor Hosted Cloud ID" + cloudAnchor!!.cloudAnchorId,
                     Toast.LENGTH_SHORT)
                     .show()
-            state = AnchorState.NONE
+            state = AnchorState.HOSTED
+        } else if (state == AnchorState.RESOLVING) {
+
+            if (cloudAnchorState.isError) {
+                Toast.makeText(this,
+                        "Error!" + cloudAnchorState.toString(),
+                        Toast.LENGTH_SHORT)
+                        .show()
+                state = AnchorState.NONE
+            } else {
+                Toast.makeText(this,
+                        "Anchor Resolved!",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                state = AnchorState.RESOLVED
+            }
+
+
         }
 
     }
