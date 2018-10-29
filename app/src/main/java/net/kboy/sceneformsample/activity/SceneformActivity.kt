@@ -14,16 +14,16 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_sceneform.*
 import net.kboy.sceneformsample.R
 
-class MainActivity : AppCompatActivity() {
+class SceneformActivity : AppCompatActivity() {
     private lateinit var selectedObject: Uri
     private lateinit var fragment: ArFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_sceneform)
 
         initializeGallery()
 
@@ -84,5 +84,4 @@ class MainActivity : AppCompatActivity() {
         fragment.arSceneView.scene.addChild(anchorNode)
         node.select()
     }
-
 }
