@@ -10,9 +10,10 @@ import net.kboy.sceneformsample.activity.ImageActivity
 import net.kboy.sceneformsample.activity.SceneformActivity
 
 class MainActivity : AppCompatActivity() {
+    private val items: Array<String> = arrayOf("Sceneform", "Augmented Images", "Cloud Anchors")
 
     private val adapter by lazy {
-        MenuAdapter {
+        MenuAdapter(items) {
             when (it) {
                 0 -> {
                     val intent = Intent(this, SceneformActivity::class.java)
