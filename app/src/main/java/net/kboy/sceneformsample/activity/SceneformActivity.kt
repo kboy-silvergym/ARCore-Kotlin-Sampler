@@ -1,9 +1,9 @@
 package net.kboy.sceneformsample.activity
 
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import android.widget.ImageView
 import com.google.ar.core.Anchor
@@ -14,7 +14,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_sceneform.*
 import net.kboy.sceneformsample.R
 
 class SceneformActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class SceneformActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_sceneform)
 
         initializeGallery()
 
